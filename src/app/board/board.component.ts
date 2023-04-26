@@ -1,29 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Cell } from 'src/interfaces';
-import { GenUniqueIdService } from '../gen-unique-id.service';
+import { CellService } from '../cell.service';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent implements OnInit {
-  cells: Cell[] = [];
+  cells: Cell[];
   BOARD_WIDTH = 15;
-
-  constructor(private genUniqueIdService: GenUniqueIdService) {
+  constructor(private cellService: CellService) {
     this.renderBoardGrid();
+    this.cellService.clickEmitter.subscribe((id) => {
+      this.handleCellClick(id);
+    });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.cells = this.cellService.cells;
+  }
   renderBoardGrid() {
+    let index = 0;
     for (let x = 0; x < this.BOARD_WIDTH; x++) {
       for (let y = 0; y < this.BOARD_WIDTH; y++) {
         //prettier-ignore
-        this.cells.push({id: this.genUniqueIdService.getUniqueId(),row: y,col: x,x: 20 * x,y: 20 * y});
+        this.cellService.addCell({id: index,row: y,col: x,x: 20 * x,y: 20 * y,char:''})
+        index++;
       }
     }
   }
 
-  handleCellClick(data: Cell) {
-    console.log(data);
+  handleCellClick(id: number) {
+    this.cellService.updateChar(id);
   }
 }

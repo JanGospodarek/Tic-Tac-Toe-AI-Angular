@@ -5,7 +5,11 @@ import {
   OnChanges,
   EventEmitter,
   Output,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
 } from '@angular/core';
+import { CellService } from 'src/app/cell.service';
 import { Cell } from 'src/interfaces';
 
 @Component({
@@ -13,11 +17,15 @@ import { Cell } from 'src/interfaces';
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.css'],
 })
-export class CellComponent {
-  @Input() data: Cell;
-  @Output() onHandleClick = new EventEmitter<Cell>();
-  constructor() {}
+export class CellComponent implements OnInit {
+  data: Cell;
+  @Input() id: number;
+  constructor(private cellService: CellService) {}
+
   handleClick() {
-    this.onHandleClick.emit(this.data);
+    this.cellService.clickEmitter.emit(this.id);
+  }
+  ngOnInit(): void {
+    this.data = this.cellService.getCell(this.id);
   }
 }

@@ -1,7 +1,8 @@
 export interface Cell {
-  id: string;
+  id: number;
   row: number;
   col: number;
   x: number;
   y: number;
+  char: string;
 }
