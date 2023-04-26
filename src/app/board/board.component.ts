@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cell } from 'src/interfaces';
+import { Cell } from '../../interfaces';
 import { CellService } from '../cell.service';
 @Component({
   selector: 'app-board',
@@ -23,7 +23,7 @@ export class BoardComponent implements OnInit {
     for (let x = 0; x < this.BOARD_WIDTH; x++) {
       for (let y = 0; y < this.BOARD_WIDTH; y++) {
         //prettier-ignore
-        this.cellService.addCell({id: index,row: y,col: x,x: 20 * x,y: 20 * y,char:''})
+        this.cellService.addCell({id: index,row: y,col: x,x: 20 * x,y: 20 * y,char:'',flag:'normal'})
         index++;
       }
     }

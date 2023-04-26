@@ -2,6 +2,8 @@
   class="cell"
   [ngStyle]="{ left: data.x + 'px', top: data.y + 'px' }"
   (click)="handleClick()"
+  appCell
+  [id]="data.id"
 >
   {{ data.char }}
 </div>

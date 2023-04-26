@@ -5,4 +5,5 @@ export interface Cell {
   x: number;
   y: number;
   char: string;
+  flag: string;
 }

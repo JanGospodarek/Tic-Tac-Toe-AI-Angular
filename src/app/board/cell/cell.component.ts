@@ -9,8 +9,8 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
-import { CellService } from 'src/app/cell.service';
-import { Cell } from 'src/interfaces';
+import { CellService } from '../../cell.service';
+import { Cell } from '../../../interfaces';
 
 @Component({
   selector: 'app-cell',
