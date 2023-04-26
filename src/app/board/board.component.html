@@ -1,0 +1,8 @@
+<div class="board">
+  <app-cell
+    *ngFor="let cell of cells"
+    [data]="cell"
+    class="cell"
+    (onHandleClick)="handleCellClick($event)"
+  ></app-cell>
+</div>
