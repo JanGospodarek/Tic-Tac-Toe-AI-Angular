@@ -1,4 +1,12 @@
-import { Directive, Input, HostBinding, OnInit } from '@angular/core';
+import {
+  Directive,
+  Input,
+  HostBinding,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+} from '@angular/core';
 import { CellService } from '../../cell.service';
 
 @Directive({
@@ -10,7 +18,6 @@ export class CellDirective implements OnInit {
   constructor(private cellService: CellService) {}
   ngOnInit(): void {
     const cell = this.cellService.getCell(this.id);
-    console.log(this.backgroundColor);
 
     if (cell.flag == 'crossed') this.backgroundColor = 'black';
   }

@@ -1,6 +1,10 @@
 <div
   class="cell"
-  [ngStyle]="{ left: data.x + 'px', top: data.y + 'px' }"
+  [ngStyle]="{
+    left: data.x + 'px',
+    top: data.y + 'px',
+    backgroundColor: data.flag == 'crossed' ? 'grey' : 'white'
+  }"
   (click)="handleClick()"
   appCell
   [id]="data.id"
