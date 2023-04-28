@@ -1,0 +1,30 @@
+#game {
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -200px;
+
+  background-color: lightgray;
+  border-radius: 15px;
+}
+#score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-left: -75px;
+}
+td,
+th {
+  text-align: center;
+  font-size: xx-large;
+}
+h1 {
+  text-align: center;
+}

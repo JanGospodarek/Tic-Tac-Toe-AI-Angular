@@ -1,1 +1,16 @@
-<div><app-board></app-board></div>
+<div id="game">
+  <div id="score">
+    <h1>Score:</h1>
+    <table>
+      <tr>
+        <th>X</th>
+        <th>O</th>
+      </tr>
+      <tr>
+        <td>{{ this.xScore }}</td>
+        <td>{{ this.oScore }}</td>
+      </tr>
+    </table>
+  </div>
+  <app-board></app-board>
+</div>

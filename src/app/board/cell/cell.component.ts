@@ -8,6 +8,9 @@ import {
   OnInit,
   SimpleChange,
   SimpleChanges,
+  ViewChild,
+  ElementRef,
+  DoCheck,
 } from '@angular/core';
 import { CellService } from '../../cell.service';
 import { Cell } from '../../../interfaces';
@@ -19,7 +22,10 @@ import { Cell } from '../../../interfaces';
 })
 export class CellComponent implements OnInit {
   data: Cell;
+  photoUrl: string;
   @Input() id: number;
+  @ViewChild('image') image: ElementRef<HTMLImageElement>;
+
   constructor(private cellService: CellService) {}
 
   handleClick() {
@@ -27,5 +33,6 @@ export class CellComponent implements OnInit {
   }
   ngOnInit(): void {
     this.data = this.cellService.getCell(this.id);
+    // this.photoUrl = `../../../img/"${this.data.char}`;
   }
 }

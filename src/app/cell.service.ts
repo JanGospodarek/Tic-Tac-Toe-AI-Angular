@@ -6,6 +6,8 @@ import { Cell } from '../interfaces';
 export class CellService {
   cells: Cell[] = [];
   currentChar = 'X';
+  xScore = 0;
+  oScore = 0;
   blockedIndexes: number[][] = [];
   scores = {
     X: 10,
@@ -16,6 +18,8 @@ export class CellService {
   constructor() {}
 
   clickEmitter = new EventEmitter<number>();
+  renderTie = new EventEmitter();
+  scoreUpdate = new EventEmitter<{ o: number; x: number }>();
   addCell(data: Cell) {
     this.cells.push(data);
   }
@@ -42,10 +46,15 @@ export class CellService {
 
     if (arrAi !== null) {
       this.crossChars(arrAi);
+      this.oScore++;
+      this.scoreUpdate.emit({ o: this.oScore, x: this.xScore });
       return 'O';
     }
     if (arrHuman !== null) {
       this.crossChars(arrHuman);
+      this.xScore++;
+      this.scoreUpdate.emit({ o: this.oScore, x: this.xScore });
+
       return 'X';
     }
     return null;
@@ -378,15 +387,16 @@ export class CellService {
       }
     }
     // const dim4 = this.checkDimension(4, this.cells, -15, 14);
-    // let openSpots = 0;
-    // this.cells.forEach((el) => {
-    //   if (el.char == '') openSpots++;
-    // });
-    // if (openSpots == 0) {
-    //   return 'tie';
-    // }
+    let openSpots = 0;
+    this.cells.forEach((el) => {
+      if (el.char == '') openSpots++;
+    });
+    if (openSpots == 0) {
+      this.renderTie.emit();
+    }
     return null;
   }
+
   // checkDimension(
   //   dimension: number,
   //   board: Cell[],
