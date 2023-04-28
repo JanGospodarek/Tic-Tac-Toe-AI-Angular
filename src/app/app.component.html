@@ -1,16 +1,36 @@
 <div id="game">
-  <div id="score">
-    <h1>Score:</h1>
-    <table>
-      <tr>
-        <th>X</th>
-        <th>O</th>
-      </tr>
-      <tr>
-        <td>{{ this.xScore }}</td>
-        <td>{{ this.oScore }}</td>
-      </tr>
-    </table>
+  <div *ngIf="!running" id="form">
+    <h1>XO</h1>
+    <p>
+      Wymiary
+      <input
+        type="range"
+        min="3"
+        step="1"
+        max="18"
+        #width
+        (input)="handleChange(width.value)"
+      />
+      {{ width.value }}
+    </p>
+    <p>Wygrywająca liczba punktów <input type="number" #amount /></p>
+    <button (click)="start(width.value, amount.value)">Start</button>
   </div>
-  <app-board></app-board>
+
+  <div *ngIf="running" id="running">
+    <div id="score">
+      <h1>Score:</h1>
+      <table>
+        <tr>
+          <th>X</th>
+          <th>O</th>
+        </tr>
+        <tr>
+          <td>{{ this.xScore }}</td>
+          <td>{{ this.oScore }}</td>
+        </tr>
+      </table>
+    </div>
+    <app-board [width]="width"></app-board>
+  </div>
 </div>
