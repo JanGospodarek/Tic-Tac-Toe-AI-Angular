@@ -87,20 +87,6 @@ export class CellService {
     return null;
   }
   AI() {
-    // let bestScore = -Infinity;
-    // let move: any;
-    // this.cells.forEach((cell) => {
-    //   if (cell.char == '') {
-    //     cell.char = 'O';
-    //     let score = this.minimax(0, false);
-    //     cell.char = '';
-    //     if (score > bestScore) {
-    //       bestScore = score;
-    //       move = cell.id;
-    //     }
-    //   }
-    // });
-    // this.cells[move].char = 'O';
     /////////////////////////////
     // jesli czlowiek ma conajmniej 3 w rzedzie to ai sie broni
     let moved = false;
@@ -202,66 +188,7 @@ export class CellService {
 
     return false;
   }
-  // minimax(depth: number, isMaximizing: boolean) {
-  //   const result = this.checkIfWinnerExists();
-  //   if (result !== null) {
-  //     let score = 0;
-  //     if (result == 'X') score = this.scores.X;
-  //     if (result == 'O') score = this.scores.O;
-  //     return score;
-  //   }
-  //   if (isMaximizing) {
-  //     let bestScore = -Infinity;
 
-  //     this.cells.forEach((el) => {
-  //       if (el.char == '') {
-  //         el.char = 'O';
-  //         let score = this.minimax(depth + 1, false);
-  //         el.char = '';
-  //         if (score > bestScore) {
-  //           bestScore = score;
-  //         }
-  //       }
-  //     });
-  //     return bestScore;
-  //   } else {
-  //     let bestScore = Infinity;
-
-  //     this.cells.forEach((el) => {
-  //       if (el.char == '') {
-  //         el.char = 'X';
-  //         let score = this.minimax(depth + 1, true);
-  //         el.char = '';
-  //         if (score < bestScore) {
-  //           bestScore = score;
-  //         }
-  //       }
-  //     });
-  //     return bestScore;
-  //   }
-  // }
-
-  bestMove() {
-    // 'O' to make its turn
-    // let bestScore = -Infinity;
-    // let move: number = 150;
-    // this.cells.forEach((cell) => {
-    //   if (cell.char == '') {
-    //     cell.char = 'O';
-    //     let score = this.minimax(this.cells, 0, false);
-    //     cell.char = '';
-    //     if (score > bestScore) {
-    //       bestScore = score;
-    //       move = cell.id;
-    //     }
-    //   }
-    // });
-    // // Is the spot av'O'lable?
-    // if (move !== 150) {
-    //   this.cells[move].char = 'O';
-    //   this.currentChar = 'X';
-    // }
-  }
   checkIsCrossed(arr: number[]) {
     let wynik = true;
     arr.sort((a, b) => a - b);
@@ -275,6 +202,7 @@ export class CellService {
     });
     return wynik;
   }
+
   checkWinner(counterNumber: number, char: string) {
     let winner = null;
     let span = counterNumber - 1; //5 -> 4, 4 -> 3 , 3 -> 2, 2 ->1
@@ -432,38 +360,4 @@ export class CellService {
     }
     return null;
   }
-
-  // checkDimension(
-  //   dimension: number,
-  //   board: Cell[],
-  //   startIndex: number,
-  //   n: number
-  // ) {
-  //   for (let i = startIndex; i < 15; i++) {
-  //     let counter = 0;
-  //     for (let j = 0; j < 15; j++) {
-  //       const y = i + j;
-  //       if (y < 0 || y >= 15) continue;
-  //       let idx: number = 0;
-  //       if (dimension == 4) idx = y * 15 + 14 - j;
-  //       if (dimension == 3) idx = y * 15 + j;
-  //       if (dimension == 2) idx = i + 15 * j;
-  //       if (dimension == 1) idx = 15 * i + j;
-  //       if (board[idx].char !== '') {
-  //         if (counter == 0 || board[idx].char == board[idx - n].char) {
-  //           if (++counter == 5) {
-  //             return Array(5)
-  //               .fill(0)
-  //               .map((e, i) => idx - 4 * n + n * i);
-  //           }
-  //         } else {
-  //           counter = 1;
-  //         }
-  //       } else {
-  //         counter = 0;
-  //       }
-  //       if(i==14&&j==14) return null
-  //     }
-  //   }
-  // }
 }
